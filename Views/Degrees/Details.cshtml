@@ -1,0 +1,64 @@
+﻿@model BitcubeEval.Models.Degree
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Degree</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DegreeName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DegreeName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DegreeDuration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DegreeDuration)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lecturer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lecturer.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DegreeName)
+        </dt>
+        <dd class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DegreeName)
+        </dd>
+        @if (Model.Courses != null)
+        {
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Course Title</th>
+                    <th>Course Duration (Months)</th>
+                </tr>
+                @foreach (var item in Model.Courses)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseDuration)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DegreeID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
