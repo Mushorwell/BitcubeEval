@@ -35,14 +35,14 @@
                     <th>Course Name</th>
                     <th>Course Duration (Months)</th>
                 </tr>
-                @foreach (var item in Model.Degree.Courses)
+                @foreach (var item in (ViewBag.degreeCourses))
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CourseName)
+                            @item.CourseName
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CourseDuration)
+                            @item.CourseDuration
                         </td>
                     </tr>
                 }

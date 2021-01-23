@@ -41,7 +41,9 @@ namespace BitcubeEval.Controllers
             {
                 return NotFound();
             }
-
+            int degreeID = course.DegreeID;
+            var degreeCourses = await GetAllDegreeCoursesAsync(degreeID);
+            ViewBag.degreeCourses = degreeCourses.Courses;
             return View(course);
         }
 
@@ -155,6 +157,23 @@ namespace BitcubeEval.Controllers
         private bool CourseExists(int? id)
         {
             return _context.Courses.Any(e => e.CourseID == id);
+        }
+
+        private async Task<Degree> GetAllDegreeCoursesAsync(int id)
+        {
+            int degreeID = id;
+            var degree = await _context.Degrees
+                .Include(d => d.Courses)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(x => x.DegreeID == degreeID);
+            try
+            {
+                return degree;
+            }
+            catch (Exception e)
+            {
+                throw /*e*/;
+            }            
         }
     }
 }
