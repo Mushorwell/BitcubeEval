@@ -170,7 +170,7 @@ namespace BitcubeEval.Controllers
             {
                 return degree;
             }
-            catch (Exception e)
+            catch (Exception /*e*/)
             {
                 throw /*e*/;
             }            
